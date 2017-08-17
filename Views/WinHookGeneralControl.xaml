@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="WinHook.Views.WinHookGeneralControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewModels="clr-namespace:WinHook.ViewModels"
+             xmlns:controls="clr-namespace:WinHook.Controls"
+             mc:Ignorable="d"
+             d:DesignWidth="350"
+             d:DataContext="{d:DesignInstance viewModels:WinHookViewModel}">
+    
+    <StackPanel Margin="0,0,0,10">
+        <Label Content="Minimize to tray:" Margin="0,5,5,0" Foreground="Blue" />
+        <CheckBox Margin="5" IsChecked="{Binding Config.GeneralConfig.MinimizeToTray}">Enabled</CheckBox>
+
+        <Label Content="Start minimized:" Margin="0,5,5,0" Foreground="Blue" />
+        <CheckBox Margin="5" IsChecked="{Binding Config.GeneralConfig.StartMinimized}">Enabled</CheckBox>
+
+        <Label Content="Start with Windows:" Margin="0,5,5,0" Foreground="Blue" />
+        <CheckBox Margin="5" IsChecked="{Binding Config.GeneralConfig.StartWithWindows}" Command="{Binding Config.GeneralConfig.InstallUninstallOnStartUpCommand}" CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}, Mode=OneWay}">Enabled</CheckBox>
+
+        <Label Content="Enable/Disable:" Margin="0,5,5,0" Foreground="Blue" />
+        <CheckBox Margin="5" IsChecked="{Binding Config.GeneralConfig.IsEnabled}">Enabled</CheckBox>
+        
+        <Label Content="Enable/Disable shortcut:" Margin="0,5,5,0" Foreground="Blue" />
+        <DockPanel LastChildFill="True" Margin="0,0,0,10">
+            <Button Margin="5" DockPanel.Dock="Right" Command="{Binding Config.GeneralConfig.ClearEnableShortcutSwitchCommand}">Crear</Button>
+            <controls:KeyInputBox x:Name="ShortcutTextBox" Margin="5" ShorcutMode="True" Shorcut="{Binding Config.GeneralConfig.EnableShortcut}" />
+        </DockPanel>
+    </StackPanel>
+    
+</UserControl>

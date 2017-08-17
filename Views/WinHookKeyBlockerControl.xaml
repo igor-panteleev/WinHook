@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="WinHook.Views.WinHookKeyBlockerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:WinHook.ViewModels"
+             xmlns:controls="clr-namespace:WinHook.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             d:DataContext="{d:DesignInstance viewModels:WinHookViewModel}">
+    <DockPanel LastChildFill="True">
+        <!--<ListBox Margin="5" MinWidth="200" SelectionChanged="Selector_OnSelectionChanged" ScrollViewer.ScrollChanged="ScrollViewer_OnScrollChanged"></ListBox>-->
+        <ListBox Name="BlockedKeysList" Margin="5" MinWidth="200" ItemsSource="{Binding Config.KeyBlockConfig.BlockedKeys}"></ListBox>
+        <StackPanel>
+            <controls:KeyInputBox x:Name="BlockedKeyTextBox" Margin="5" ShorcutMode="False" Keys="{Binding Config.KeyBlockConfig.TmpAddKeys}" />
+            <!--<TextBox Margin="5" PreviewKeyDown="UIElement_OnPreviewKeyDown"></TextBox>-->
+            <Button Margin="5" Name="AddBtn" Command="{Binding Config.KeyBlockConfig.AddKeyCommand}" CommandParameter="{Binding ElementName=BlockedKeyTextBox, Path=Keys}">Add</Button>
+            <Button Margin="5" Name="RemoveBtn" Command="{Binding Config.KeyBlockConfig.RemoveKeyCommand}" CommandParameter="{Binding ElementName=BlockedKeysList, Path=SelectedItem}">Remove</Button>
+        </StackPanel>
+    </DockPanel>
+</UserControl>

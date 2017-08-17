@@ -1,0 +1,28 @@
+﻿<Window x:Class="WinHook.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Views="clr-namespace:WinHook.Views"
+        xmlns:ViewModels="clr-namespace:WinHook.ViewModels"
+        Title="WinHook" Height="500" Width="700" ResizeMode="CanMinimize"
+        WindowStyle="SingleBorderWindow" Loaded="MainWindow_OnLoaded">
+    <Window.DataContext>
+        <ViewModels:WinHookViewModel/>
+    </Window.DataContext>
+    <Grid Background="#FFF9F9F9">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TabControl Grid.Row="0" BorderBrush="#FFF9F9F9">
+            <TabItem Header="General">
+                <Views:WinHookGeneralControl/>
+            </TabItem>
+            <TabItem Header="Key Block">
+                <Views:WinHookKeyBlockerControl/>
+            </TabItem>
+            <TabItem Header="Mouse Settings" IsEnabled="False"></TabItem>
+            <TabItem Header="Auto Keys" IsEnabled="False"></TabItem>
+        </TabControl>
+        <Button Margin="5" Grid.Row="1" Command="{Binding SaveCommand}">Save</Button>
+    </Grid>
+</Window>
