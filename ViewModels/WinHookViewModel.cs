@@ -1,8 +1,8 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
 using System.Xml.Serialization;
@@ -22,8 +22,17 @@ namespace WinHook.ViewModels
             _config = LoadConfig();
             HotKeyManager.HotKeyPressed += HotKeyManager_HotKeyPressed;
             KeyHook.KeyCapture += KeyHook_KeyCapture;
+            EventProxy<PropertyChangedEventArgs>.EventCaptured += OnEventCaptured;
         }
-        public void SaveConfig()
+
+        private void OnEventCaptured(object sender, PropertyChangedEventArgs e)
+        {
+            var isIgnore = sender.GetType().GetProperty(e.PropertyName).GetCustomAttributes(false).Any(a => a is XmlIgnoreAttribute);
+            if (isIgnore) return;
+
+            SaveConfig();
+        }
+        private void SaveConfig()
         {
             try
             {
@@ -33,9 +42,10 @@ namespace WinHook.ViewModels
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Debug.WriteLine("Can't save {0}; {1};", ConfigFilePath, e.Message);
                 return;
             }
-            MessageBox.Show("Config file saved!", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
+            Debug.WriteLine("Config file saved {0};", ConfigFilePath);
         }
 
         public Config LoadConfig()
@@ -68,10 +78,10 @@ namespace WinHook.ViewModels
             }
         }
 
-        public ICommand SaveCommand
-        {
-            get { return new RelayCommand(SaveConfig); }
-        }
+        //public ICommand SaveCommand
+        //{
+        //    get { return new RelayCommand(SaveConfig); }
+        //}
 
         private void HotKeyManager_HotKeyPressed(object sender, HotKeyEventArgs e)
         {

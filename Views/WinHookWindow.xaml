@@ -23,6 +23,6 @@
             <TabItem Header="Mouse Settings" IsEnabled="False"></TabItem>
             <TabItem Header="Auto Keys" IsEnabled="False"></TabItem>
         </TabControl>
-        <Button Margin="5" Grid.Row="1" Command="{Binding SaveCommand}">Save</Button>
+        <!--<Button Margin="5" Grid.Row="1" Command="{Binding SaveCommand}">Save</Button>-->
     </Grid>
 </Window>

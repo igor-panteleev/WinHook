@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using WinHook.Utils;
 
 namespace WinHook.Models
 {
@@ -9,8 +10,11 @@ namespace WinHook.Models
 
         protected void RaisePropertyChanged([CallerMemberName] string propertyName = "")
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged == null) return;
+
+            var eventArgs = new PropertyChangedEventArgs(propertyName);
+            PropertyChanged(this, eventArgs);
+            EventProxy<PropertyChangedEventArgs>.CaptureEvent(this, eventArgs);
         }
     }
 }
