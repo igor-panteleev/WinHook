@@ -4,7 +4,7 @@
         xmlns:Views="clr-namespace:WinHook.Views"
         xmlns:ViewModels="clr-namespace:WinHook.ViewModels"
         Title="WinHook" Height="500" Width="700" ResizeMode="CanMinimize"
-        WindowStyle="SingleBorderWindow" Loaded="MainWindow_OnLoaded">
+        Loaded="MainWindow_OnLoaded" Background="#FFF9F9F9">
     <Window.DataContext>
         <ViewModels:WinHookViewModel/>
     </Window.DataContext>
@@ -13,7 +13,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TabControl Grid.Row="0" BorderBrush="#FFF9F9F9">
+        <TabControl Grid.Row="0" BorderBrush="#FFF9F9F9" Background="#FFF9F9F9">
             <TabItem Header="General">
                 <Views:WinHookGeneralControl/>
             </TabItem>
