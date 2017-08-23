@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
 
 namespace WinHook.Models
 {
@@ -9,11 +7,6 @@ namespace WinHook.Models
     {
         private GeneralConfig _generalConfig = new GeneralConfig();
         private KeyBlockConfig _keyBlockConfig = new KeyBlockConfig();
-
-        //public Config()
-        //{
-        //    HotKeyManager.HotKeyPressed += HotKeyManager_HotKeyPressed;
-        //}
 
         public GeneralConfig GeneralConfig
         {
@@ -36,14 +29,5 @@ namespace WinHook.Models
                 RaisePropertyChanged();
             }
         }
-
-        //private void HotKeyManager_HotKeyPressed(object sender, HotKeyEventArgs e)
-        //{
-        //    if (e.Key == EnableShortcut.Keys && e.Modifiers == EnableShortcut.ModifierKeys)
-        //    {
-        //        IsEnabled = !IsEnabled;
-        //    }
-        //}
-
     }
 }

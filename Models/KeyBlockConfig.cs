@@ -11,6 +11,18 @@ namespace WinHook.Models
         private ObservableCollection<Keys> _blockedKeys = new ObservableCollection<Keys>();
         private Keys? _tmpKey;
 
+        public KeyBlockConfig()
+        {
+            // ObservableCollection won't throw RaisePropertyChanged on change
+            // So we doo it manually
+            BlockedKeys.CollectionChanged += BlockedKeys_CollectionChanged;
+        }
+
+        void BlockedKeys_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            RaisePropertyChanged("BlockedKeys");
+        }
+
         public ObservableCollection<Keys> BlockedKeys
         {
             get { return _blockedKeys; }

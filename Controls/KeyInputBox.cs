@@ -123,11 +123,11 @@ namespace WinHook.Controls
             // The text box grabs all input.
             e.Handled = true;
 
+            // Fetch the actual shortcut key.
+            var key = (e.Key == Key.System ? e.SystemKey : e.Key);
+
             if (invoker.ShorcutMode)
             {
-                // Fetch the actual shortcut key.
-                var key = (e.Key == Key.System ? e.SystemKey : e.Key);
-
                 // Ignore modifier keys.
                 if (key == Key.LeftShift || key == Key.RightShift
                     || key == Key.LeftCtrl || key == Key.RightCtrl
@@ -143,7 +143,7 @@ namespace WinHook.Controls
             }
             else
             {
-                invoker.Keys = (Keys) KeyInterop.VirtualKeyFromKey(e.Key);
+                invoker.Keys = (Keys) KeyInterop.VirtualKeyFromKey(key);
             }
 
             invoker.OnInvertCall();
