@@ -37,6 +37,7 @@ namespace WinHook.Utils
 
         private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
 
+        public delegate void KeyCaptyreEventHandler(object sender, KeyCaptureEventArgs e);
         public static event KeyCaptyreEventHandler KeyCapture;
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]

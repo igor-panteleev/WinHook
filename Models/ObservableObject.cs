@@ -14,7 +14,6 @@ namespace WinHook.Models
 
             var eventArgs = new PropertyChangedEventArgs(propertyName);
             PropertyChanged(this, eventArgs);
-            Debug.WriteLine(propertyName);
             EventProxy<PropertyChangedEventArgs>.CaptureEvent(this, eventArgs);
         }
     }

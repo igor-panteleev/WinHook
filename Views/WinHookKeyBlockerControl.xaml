@@ -12,10 +12,10 @@
         <!--<ListBox Margin="5" MinWidth="200" SelectionChanged="Selector_OnSelectionChanged" ScrollViewer.ScrollChanged="ScrollViewer_OnScrollChanged"></ListBox>-->
         <ListBox Name="BlockedKeysList" Margin="5" MinWidth="200" ItemsSource="{Binding Config.KeyBlockConfig.BlockedKeys}"></ListBox>
         <StackPanel>
-            <controls:KeyInputBox x:Name="BlockedKeyTextBox" Margin="5" ShorcutMode="False" Keys="{Binding Config.KeyBlockConfig.TmpAddKeys}" />
+            <controls:SysKeyInputBox x:Name="BlockedKeyTextBox" Margin="5" Keys="{Binding Config.KeyBlockConfig.TmpAddKeys}" />
             <!--<TextBox Margin="5" PreviewKeyDown="UIElement_OnPreviewKeyDown"></TextBox>-->
-            <Button Margin="5" Name="AddBtn" Command="{Binding Config.KeyBlockConfig.AddKeyCommand}" CommandParameter="{Binding ElementName=BlockedKeyTextBox, Path=Keys}">Add</Button>
-            <Button Margin="5" Name="RemoveBtn" Command="{Binding Config.KeyBlockConfig.RemoveKeyCommand}" CommandParameter="{Binding ElementName=BlockedKeysList, Path=SelectedItem}">Remove</Button>
+            <Button Margin="5" Name="AddBtn" Command="{Binding Config.KeyBlockConfig.AddKeyCommand}" CommandParameter="{Binding ElementName=BlockedKeyTextBox, Path=Keys, Mode=OneWay}">Add</Button>
+            <Button Margin="5" Name="RemoveBtn" Command="{Binding Config.KeyBlockConfig.RemoveKeyCommand}" CommandParameter="{Binding ElementName=BlockedKeysList, Path=SelectedItem, Mode=OneWay}">Remove</Button>
         </StackPanel>
     </DockPanel>
 </UserControl>

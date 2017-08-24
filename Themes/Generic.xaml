@@ -4,4 +4,5 @@
     xmlns:Controls="clr-namespace:WinHook.Controls">
 
     <Style TargetType="{x:Type Controls:KeyInputBox}" BasedOn="{StaticResource {x:Type TextBox}}"/>
+    <Style TargetType="{x:Type Controls:SysKeyInputBox}" BasedOn="{StaticResource {x:Type TextBox}}"/>
 </ResourceDictionary>
